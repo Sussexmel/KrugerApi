@@ -14,7 +14,6 @@ import {Growl} from 'primereact/growl';
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
-import { EmpleadoService } from './service/EmpleadoService';
 
 export default class App extends Component{
   constructor(){
