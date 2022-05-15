@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { PersonaService } from './service/PersonaService';
+import { EmpleadoService } from './service/EmpleadoService';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import {Panel} from 'primereact/panel';
