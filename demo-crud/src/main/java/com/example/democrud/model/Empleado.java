@@ -1,5 +1,7 @@
 package com.example.democrud.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,7 +37,7 @@ public class Empleado
 	private String email;
 
 	@Column
-	private String fecha_nacimiento;
+	private Date fecha_nacimiento;
 
 	@Column	
 	private String direccion;
@@ -50,7 +52,7 @@ public class Empleado
 	private String tipo_vacuna;
 
 	@Column
-	private String fecha_vacunacion;
+	private Date fecha_vacunacion;
 
 	@Column
 	private int dosis;
@@ -95,11 +97,11 @@ public class Empleado
 		this.email = email;
 	}
 
-	public String getFecha_nacimiento() {
+	public Date getFecha_nacimiento() {
 		return fecha_nacimiento;
 	}
 
-	public void setFecha_nacimiento(String fecha_nacimiento) {
+	public void setFecha_nacimiento(Date fecha_nacimiento) {
 		this.fecha_nacimiento = fecha_nacimiento;
 	}
 
@@ -135,11 +137,11 @@ public class Empleado
 		this.tipo_vacuna = tipo_vacuna;
 	}
 
-	public String getFecha_vacunacion() {
+	public Date getFecha_vacunacion() {
 		return fecha_vacunacion;
 	}
 
-	public void setFecha_vacunacion(String fecha_vacunacion) {
+	public void setFecha_vacunacion(Date fecha_vacunacion) {
 		this.fecha_vacunacion = fecha_vacunacion;
 	}
 
