@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Personas</title>
+<title>Empleado</title>
 
 <!-- Bootstrap CSS -->
 <link href="../static/css/bootstrap.css" rel="stylesheet"
@@ -11,8 +11,8 @@
 <body>
 	<div class="container">
 		<br>
-		<h2>Agregar Persona</h2>
-		<form action="#" th:action="@{/home/save}" th:object="${persona}"
+		<h2>Agregar Empleado</h2>
+		<form action="#" th:action="@{/home/save}" th:object="${empleado}"
 			method="post">
 			<div class="form-group">
 				<label for="nombre">Nombre</label> <input type="text"
