@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DemoCrudApplication<demo-crud>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.democrud.DemoCrudApplication",
+            "projectName": "demo-crud",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
