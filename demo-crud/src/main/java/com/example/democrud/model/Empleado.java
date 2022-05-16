@@ -34,7 +34,7 @@ public class Empleado
 	
 	@Column
 	@NotBlank
-	private String email;
+	private String correo;
 
 	@Column
 	private Date fecha_nacimiento;
@@ -89,12 +89,12 @@ public class Empleado
 		this.apellido = apellido;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getCorreo() {
+		return correo;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setCorreo(String correo) {
+		this.correo = correo;
 	}
 
 	public Date getFecha_nacimiento() {

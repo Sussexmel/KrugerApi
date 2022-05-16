@@ -8,24 +8,31 @@ import {Menubar} from 'primereact/menubar';
 import {Dialog} from 'primereact/dialog';
 import {InputText} from 'primereact/inputtext';
 import {Button} from 'primereact/button';
-import {Growl} from 'primereact/growl';
+import {Toast} from 'primereact/toast';
 
 
-import 'primereact/resources/themes/nova-light/theme.css';
+//import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 
 export default class App extends Component{
   constructor(){
     super();
+    this.Toast = React.createRef();
     this.state = {
       visible : false,
       empleado: {
         id: null,
+        cedula: null,
         nombre: null,
         apellido: null,
+        correo: null,
+        fecha_nacimiento: null,
         direccion: null,
-        telefono : null
+        telefono : null,
+        estado_vacuna: null,
+        fecha_vacuna: null,
+        dosis: null
       },
       selectedEmpleado : {
 
@@ -68,21 +75,27 @@ export default class App extends Component{
         visible : false,
         empleado: {
           id: null,
+          cedula: null,
           nombre: null,
           apellido: null,
+          correo: null,
+          fecha_nacimiento: null,
           direccion: null,
-          telefono : null
+          telefono : null,
+          estado_vacuna: null,
+          fecha_vacuna: null,
+          dosis: null
         }
       });
-      this.growl.show({severity: 'success', summary: 'Atención!', detail: 'Se guardó el registro correctamente.'});
-      this.empleadoService.getAll().then(data => this.setState({empleados: data}))
+      this.toast.show({severity: 'success', summary: 'Atención!', detail: 'Se guardó el registro correctamente.'});
+      this.empleadoService.getAll().then(data => this.setState({empleados: data}))      
     })
   }
 
   delete() {
     if(window.confirm("¿Realmente desea eliminar el registro?")) {
       this.empleadoService.delete(this.state.selectedEmpleado.id).then(data => {
-        this.growl.show({severity: 'success', summary: 'Atención!', detail: 'Se eliminó el registro correctamente.'});
+        this.toast.show({severity: 'success', summary: 'Atención!', detail: 'Se eliminó el registro correctamente.'});
         this.empleadoService.getAll().then(data => this.setState({empleados: data}));
       });
     }
@@ -96,10 +109,16 @@ export default class App extends Component{
         <Panel header="React CRUD App">
             <DataTable value={this.state.empleados} paginator={true} rows="4" selectionMode="single" selection={this.state.selectedEmpleado} onSelectionChange={e => this.setState({selectedEmpleado: e.value})}>
               <Column field="id" header="ID"></Column>
+              <Column field="cedula" header="Cedula"></Column>
               <Column field="nombre" header="Nombre"></Column>
               <Column field="apellido" header="Apellido"></Column>
+              <Column field="correo" header="Correo"></Column>
+              <Column field="fecha_nacimiento" header="Fecha Nacimiento"></Column>
               <Column field="direccion" header="Direccion"></Column>
               <Column field="telefono" header="Teléfono"></Column>
+              <Column field="estado_vacuna" header="Estado vacunación"></Column>
+              <Column field="fecha_vacuna" header="Fecha vacunación"></Column>
+              <Column field="dosis" header="Dosis"></Column>
             </DataTable>
         </Panel>
         <Dialog header="Crear empleado" visible={this.state.visible} style={{width: '400px'}} footer={this.footer} modal={true} onHide={() => this.setState({visible: false})}>
@@ -131,6 +150,32 @@ export default class App extends Component{
               </span>
               <br/>
               <span className="p-float-label">
+                <InputText value={this.state.empleado.correo} style={{width : '100%'}} id="correo" onChange={(e) => {
+                    let val = e.target.value;
+                    this.setState(prevState => {
+                        let empleado = Object.assign({}, prevState.empleado);
+                        empleado.correo = val
+
+                        return { empleado };
+                    })}
+                  } />
+                <label htmlFor="correo">Correo</label>
+              </span>
+              <br/> 
+              <span className="p-float-label">
+                <InputText value={this.state.empleado.fecha_nacimiento} style={{width : '100%'}} id="fecha_nacimiento" onChange={(e) => {
+                    let val = e.target.value;
+                    this.setState(prevState => {
+                        let empleado = Object.assign({}, prevState.empleado);
+                        empleado.fecha_nacimiento = val
+
+                        return { empleado };
+                    })}
+                  } />
+                <label htmlFor="fecha_nacimiento">Fecha Nacimiento</label>
+              </span>
+              <br/>   
+              <span className="p-float-label">
                 <InputText value={this.state.empleado.direccion} style={{width : '100%'}} id="direccion" onChange={(e) => {
                     let val = e.target.value;
                     this.setState(prevState => {
@@ -155,9 +200,48 @@ export default class App extends Component{
                   } />
                 <label htmlFor="telefono">Teléfono</label>
               </span>
+              <br/>
+              <span className="p-float-label">
+                <InputText value={this.state.empleado.estado_vacuna} style={{width : '100%'}} id="estado_vacuna" onChange={(e) => {
+                    let val = e.target.value;
+                    this.setState(prevState => {
+                        let empleado = Object.assign({}, prevState.empleado);
+                        empleado.estado_vacuna = val
+
+                        return { empleado };
+                    })}
+                  } />
+                <label htmlFor="estado_vacuna">Estado Vacunación</label>
+              </span>
+              <br/>
+              <span className="p-float-label">
+                <InputText value={this.state.empleado.fecha_vacuna} style={{width : '100%'}} id="fecha_vacuna" onChange={(e) => {
+                    let val = e.target.value;
+                    this.setState(prevState => {
+                        let empleado = Object.assign({}, prevState.empleado);
+                        empleado.fecha_vacuna = val
+
+                        return { empleado };
+                    })}
+                  } />
+                <label htmlFor="fecha_vacuna">Feha Vacunación</label>
+              </span>
+              <br/>
+              <span className="p-float-label">
+                <InputText value={this.state.empleado.dosis} style={{width : '100%'}} id="dosis" onChange={(e) => {
+                    let val = e.target.value;
+                    this.setState(prevState => {
+                        let empleado = Object.assign({}, prevState.empleado);
+                        empleado.dosis = val
+
+                        return { empleado };
+                    })}
+                  } />
+                <label htmlFor="dosis">Dosis</label>
+              </span>
             </form>
         </Dialog>
-        <Growl ref={(el) => this.growl = el} />
+       <Toast ref={this.Toast} />
       </div>
     );
   }
@@ -167,10 +251,16 @@ export default class App extends Component{
       visible : true,
       empleado : {
         id: null,
+        cedula: null,
         nombre: null,
         apellido: null,
+        correo: null,
+        fecha_nacimiento: null,
         direccion: null,
-        telefono : null
+        telefono : null,
+        estado_vacuna: null,
+        fecha_vacuna: null,
+        dosis: null
       }
     });
     document.getElementById('empleado-form').reset();
@@ -181,10 +271,18 @@ export default class App extends Component{
       visible : true,
       empleado : {
         id: this.state.selectedEmpleado.id,
+        cedula: this.state.selectedEmpleado.cedula,
         nombre: this.state.selectedEmpleado.nombre,
         apellido: this.state.selectedEmpleado.apellido,
+        correo: this.state.selectedEmpleado.correo,
+        fecha_nacimiento: this.state.selectedEmpleado.fecha_nacimiento,
         direccion: this.state.selectedEmpleado.direccion,
-        telefono : this.state.selectedEmpleado.telefono
+        telefono : this.state.selectedEmpleado.telefono,
+        estado_vacuna : this.state.selectedEmpleado.estado_vacuna,
+        fecha_vacuna : this.state.selectedEmpleado.fecha_vacuna,
+        estado_vacuna : this.state.selectedEmpleado.estado_vacuna,
+        dosis : this.state.selectedEmpleado.dosis
+        
       }
     })
   }
