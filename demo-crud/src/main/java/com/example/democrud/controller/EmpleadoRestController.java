@@ -87,7 +87,6 @@ public class EmpleadoRestController {
 		}			
 		
 		Empleado obj = empleadoServiceAPI.save(empleado);
-		// crear usuario y contraseña
 		
 
 		return new ResponseEntity<Empleado>(obj, HttpStatus.OK);
