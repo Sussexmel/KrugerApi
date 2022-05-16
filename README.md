@@ -23,7 +23,7 @@ Este módulo requiere los siguientes elementos:
 
 * Utilizacion de tecnologias :
 * FRONT END
-* - Libreria React, archivo json.
+* Libreria React, archivo json.
 </br>
 
 * BACK END
