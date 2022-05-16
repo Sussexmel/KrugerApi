@@ -280,7 +280,6 @@ export default class App extends Component{
         telefono : this.state.selectedEmpleado.telefono,
         estado_vacuna : this.state.selectedEmpleado.estado_vacuna,
         fecha_vacuna : this.state.selectedEmpleado.fecha_vacuna,
-        estado_vacuna : this.state.selectedEmpleado.estado_vacuna,
         dosis : this.state.selectedEmpleado.dosis
         
       }
